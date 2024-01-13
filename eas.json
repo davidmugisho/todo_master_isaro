@@ -2,6 +2,7 @@
   "cli": {
     "version": ">= 5.2.0"
   },
+
   "build": {
     "development": {
       "developmentClient": true,
@@ -14,5 +15,6 @@
   },
   "submit": {
     "production": {}
-  }
+  },
+  "projectId": "9dc0b1b7-0321-4f55-b34c-1510fb61bdf9"
 }

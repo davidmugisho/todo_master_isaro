@@ -48,3 +48,76 @@
 # Build ios
 
 `eas build --platform ios`
+
+# here is REST full API cdoe using nodejs and expres
+
+const expres = require ('xpress');
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = 3000;
+
+app.use(bosyParser.json());
+
+# sample data (in memory storage)
+
+let items =[{id:1, name: 'david'}, {id:2, name: 'divine},];
+
+# get all items
+
+app.get('/items', (req , res) =>{res.json(items);});
+
+# get itema by id
+
+app.get('/items/:id', (req , res) => {
+const itemId = ParseInt(req.params.id);
+const item = items.find(item => item.id === itemId);
+
+    if(item){
+        res.json(item);
+        }
+        else {
+            res.status(404).json({error:'item not found'});
+
+}
+}
+);
+
+# create a new item
+
+app.post('/item', (req, res) =>{
+const newItem = req.body;
+newItem.id = items.length + 1;
+items.push(newItem);
+
+    res.status(201).json(newItem);
+
+});
+
+# update an existing item
+
+app.put('/item/:id', (req, res) =>{
+const itemId = parseInt(req.params.id);
+const updatedItem = req.body;
+
+    items = items.map(item => (item.id === itemid ? updatedItem : item));
+
+    res.json(updatedItem);
+
+});
+
+# delete an item
+
+app.delete('/item/:id', (req, res) => {
+const itemId = parseInt(req.params.id);
+items = items.filter(item => item.id !== itemId);
+
+    res.json({ messages: 'Items deleted successfully'});
+
+});
+
+# start the server
+
+app.listen(PORT, () => {
+console.log ('server is running on http://localhost:${PORT}');
+});
